@@ -155,6 +155,8 @@ def experiment3_revolution_only(df, feature_cols):
                   'n_patients': len(df_rev), 'classifier': clf_name}
         result.update(metrics)
         all_results.append(result)
+        if clf_name == 'RandomForest':
+            _save_model(X, y, clf_name, 'exp3_RevOnly_RandomForest', use_scaler)
 
     return all_results
 
@@ -210,6 +212,7 @@ def experiment4_scanner_fingerprint(df, feature_cols):
     result = {'experiment': 'Exp4_ScannerFingerprint_RF', 'confound_status': 'CLEAN',
               'n_patients': len(df_normal), 'classifier': 'RandomForest'}
     result.update(metrics)
+    _save_model(X, y, 'RandomForest', 'exp4_scanner_fingerprint', use_scaler=False)
     return [result], offset_df
 
 
